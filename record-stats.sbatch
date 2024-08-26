@@ -41,4 +41,4 @@ rclone copy "$TARGET_FILE" "$RCLONE_REMOTE:/"
 
 rm "$TARGET_FILE"
 
-sbatch "$0" --begin=now+1days
+sbatch --begin="now+1days" "$0"
