@@ -1,6 +1,5 @@
 #!/bin/bash
 #SBATCH --job-name=oak-archive-stat-cron
-#SBATCH --begin=now+1days
 #SBATCH --dependency=singleton
 #SBATCH --time=00:20:00
 #SBATCH --partition=normal,hns,serc
@@ -42,4 +41,4 @@ rclone copy "$TARGET_FILE" "$RCLONE_REMOTE:/"
 
 rm "$TARGET_FILE"
 
-sbatch "$0"
+sbatch "$0" --begin=now+1days
