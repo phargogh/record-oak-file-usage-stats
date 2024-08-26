@@ -1,9 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=oak-stat-cron
+#SBATCH --job-name=oak-archive-stat-cron
 #SBATCH --begin=now+1days
 #SBATCH --dependency=singleton
 #SBATCH --time=00:20:00
-#SBATCH --mail-type=FAIL
+#SBATCH --partition=normal,hns,serc
+#SBATCH --mail-type=ALL
 
 set -ex
 
@@ -31,7 +32,7 @@ TARGET_FILE="$SCRATCH/$(date +"%F_%R").txt"
 # %Z time of last change, seconds since Epoch
 # %W time of file birth, seconds since Epoch; 0 if unknown
 # %o optimal I/O transfer size hint
-find "$OAK" -print0 | xargs -0 stat --terse > "$TARGET_FILE"
+find "$OAK/NatCap_Data_Archive" -not -path '*/*tiles*/*' -exec stat --terse {} \; > "$TARGET_FILE"
 
 RCLONE_REMOTE="oak-stat-files-gdrive"
 rclone copy "$TARGET_FILE" "$RCLONE_REMOTE:/"
