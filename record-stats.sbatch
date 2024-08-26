@@ -5,6 +5,9 @@
 #SBATCH --time=00:20:00
 #SBATCH --partition=normal,hns,serc
 #SBATCH --mail-type=ALL
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --output=/scratch/users/jadoug06/slurm-logfiles/slurm-%j.%x.out
 
 set -ex
 
