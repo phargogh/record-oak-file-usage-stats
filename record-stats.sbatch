@@ -34,7 +34,7 @@ TARGET_FILE="$SCRATCH/$(date +"%F_%R")-oak-stats.txt"
 # %Z time of last change, seconds since Epoch
 # %W time of file birth, seconds since Epoch; 0 if unknown
 # %o optimal I/O transfer size hint
-find "$OAK/NatCap_Data_Archive" -not -path '*/*tiles*/*' -exec stat --terse {} \; > "$TARGET_FILE"
+find "$OAK/NatCap_Data_Archive" -not -path '*/*tiles*/*' -exec stat --terse {} \; > "$TARGET_FILE" || echo "error encountered; see logs - ignoring and continuing script."
 
 RCLONE_REMOTE="oak-stat-files-gdrive"
 rclone copy "$TARGET_FILE" "$RCLONE_REMOTE:/"
