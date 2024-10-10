@@ -13,7 +13,7 @@ set -ex
 module load system rclone
 
 # This assumes that we are running GNU stat, not BSD stat.
-TARGET_FILE="$SCRATCH/$(date +"%F_%R").txt"
+TARGET_FILE="$SCRATCH/$(date +"%F_%R")-oak-stats.txt"
 
 # https://unix.stackexchange.com/a/628259/14137
 # --terse is the equivalent of
